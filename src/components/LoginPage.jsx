@@ -9,6 +9,9 @@ function LoginPage({ onLogin }) {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
+    // Get the API URL from environment variables
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -16,7 +19,7 @@ function LoginPage({ onLogin }) {
 
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/users/login?username=${username}&password=${password}`
+                `${API_URL}/api/users/login?username=${username}&password=${password}`
             );
             const userData = response.data;
             console.log("User data from backend:", userData);
@@ -24,7 +27,6 @@ function LoginPage({ onLogin }) {
             onLogin(userData);
             sessionStorage.setItem('user', JSON.stringify(userData));
             const user1 = JSON.parse(sessionStorage.getItem('user'));
-            // alert(user1);
             alert(user1.userId);
             console.log('User logged in:', userData);
 
@@ -36,8 +38,17 @@ function LoginPage({ onLogin }) {
                 alert("Unexpected role. Please contact support.");
             }
         } catch (error) {
-            console.error("Login error:", error.response || error.message);
-            setErrorMessage("Login failed. Please try again.");
+            console.error("Login error:", error);
+            if (error.response) {
+                // The server responded with a status code outside the 2xx range
+                setErrorMessage(error.response.data || "Login failed. Please try again.");
+            } else if (error.request) {
+                // The request was made but no response was received
+                setErrorMessage("No response from server. Please check your connection.");
+            } else {
+                // Something happened in setting up the request
+                setErrorMessage("Login failed. Please try again.");
+            }
         } finally {
             setIsLoading(false);
         }
@@ -132,3 +143,4 @@ function LoginPage({ onLogin }) {
 }
 
 export default LoginPage;
+
