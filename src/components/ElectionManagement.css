@@ -1,0 +1,42 @@
+.masonry-grid {
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+}
+
+.masonry-grid-column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+}
+
+.election-card {
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.election-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.election-card-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.election-title {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.election-description {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+.election-info .badge {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}

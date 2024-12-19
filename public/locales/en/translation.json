@@ -1,0 +1,60 @@
+{
+  "navbar": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "learnMore": "Learn More",
+    "aboutUs": "About Us",
+    "faqs": "FAQs",
+    "login": "Login",
+    "signUp": "Sign Up"
+  },
+  "hero": {
+    "title": "Empowering Your Voice",
+    "description": "Your vote matters. With VoteSmart, you can participate in secure, transparent, and convenient online elections from anywhere.",
+    "getStarted": "Get Started",
+    "learnHow": "Learn How"
+  },
+  "features": {
+    "title": "Why Choose VoteSmart?",
+    "subtitle": "The features that make us the most reliable online voting solution.",
+    "secure": "Secure & Encrypted",
+    "secureDescription": "VoteSmart ensures your vote is confidential and secure using top-tier encryption technology.",
+    "userFriendly": "User-Friendly",
+    "userFriendlyDescription": "Simplified design makes voting accessible and intuitive for all users.",
+    "realTime": "Real-Time Results",
+    "realTimeDescription": "Monitor live election results with complete transparency.",
+    "mobile": "Mobile-Optimized",
+    "mobileDescription": "Vote seamlessly from any device, be it a desktop, tablet, or smartphone.",
+    "accessibility": "24/7 Accessibility",
+    "accessibilityDescription": "Cast your vote at any time with a system available round the clock.",
+    "ecoFriendly": "Environmental Impact",
+    "ecoFriendlyDescription": "A paperless, eco-friendly voting solution that contributes to sustainability."
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Participate in elections in just a few simple steps.",
+    "step1": "Sign Up",
+    "step1Description": "Create your VoteSmart account to participate in online elections.",
+    "step2": "Verify Identity",
+    "step2Description": "Securely verify your identity to ensure voting eligibility.",
+    "step3": "Receive Confirmation",
+    "step3Description": "Get an email confirmation with voting instructions and updates.",
+    "step4": "Cast Your Vote",
+    "step4Description": "Choose your candidates and submit your vote securely.",
+    "step5": "Track Election Progress",
+    "step5Description": "Follow live election updates and view results in real-time."
+  },
+  "footer": {
+    "about": "VoteSmart",
+    "aboutDescription": "Revolutionizing democracy with a secure, transparent, and accessible online voting platform.",
+    "quickLinks": "Quick Links",
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "signUp": "Sign Up",
+    "contact": "Contact Us",
+    "emailPlaceholder": "Your Email",
+    "messagePlaceholder": "Your Message",
+    "submit": "Submit",
+    "copyright": "© 2024 VoteSmart. All Rights Reserved."
+  }
+}

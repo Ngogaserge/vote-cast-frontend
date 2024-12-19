@@ -1,0 +1,60 @@
+{
+  "navbar": {
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
+    "learnMore": "Aprender más",
+    "aboutUs": "Sobre nosotros",
+    "faqs": "FAQs",
+    "login": "Iniciar sesión",
+    "signUp": "Registrarse"
+  },
+  "hero": {
+    "title": "Empoderando tu voz",
+    "description": "Tu voto importa. Con VoteSmart, puedes participar en elecciones en línea seguras, transparentes y convenientes desde cualquier lugar.",
+    "getStarted": "Comenzar",
+    "learnHow": "Aprender cómo"
+  },
+  "features": {
+    "title": "¿Por qué elegir VoteSmart?",
+    "subtitle": "Las características que nos convierten en la solución de votación en línea más confiable.",
+    "secure": "Seguro y encriptado",
+    "secureDescription": "VoteSmart garantiza que tu voto sea confidencial y seguro mediante tecnología de encriptación de primer nivel.",
+    "userFriendly": "Fácil de usar",
+    "userFriendlyDescription": "Un diseño simplificado hace que el voto sea accesible e intuitivo para todos los usuarios.",
+    "realTime": "Resultados en tiempo real",
+    "realTimeDescription": "Monitorea los resultados de las elecciones en vivo con total transparencia.",
+    "mobile": "Optimizado para móviles",
+    "mobileDescription": "Vota sin problemas desde cualquier dispositivo, ya sea un escritorio, tableta o smartphone.",
+    "accessibility": "Accesibilidad 24/7",
+    "accessibilityDescription": "Emite tu voto en cualquier momento con un sistema disponible las 24 horas.",
+    "ecoFriendly": "Impacto ambiental",
+    "ecoFriendlyDescription": "Una solución de votación sin papel y ecológica que contribuye a la sostenibilidad."
+  },
+  "howItWorks": {
+    "title": "Cómo funciona",
+    "subtitle": "Participa en elecciones en unos pocos pasos simples.",
+    "step1": "Regístrate",
+    "step1Description": "Crea tu cuenta VoteSmart para participar en elecciones en línea.",
+    "step2": "Verifica tu identidad",
+    "step2Description": "Verifica tu identidad de forma segura para garantizar tu elegibilidad para votar.",
+    "step3": "Recibe confirmación",
+    "step3Description": "Recibe una confirmación por correo electrónico con instrucciones y actualizaciones de votación.",
+    "step4": "Emite tu voto",
+    "step4Description": "Elige tus candidatos y envía tu voto de manera segura.",
+    "step5": "Sigue el progreso",
+    "step5Description": "Sigue las actualizaciones de las elecciones en vivo y ve los resultados en tiempo real."
+  },
+  "footer": {
+    "about": "VoteSmart",
+    "aboutDescription": "Revolucionando la democracia con una plataforma de votación en línea segura, transparente y accesible.",
+    "quickLinks": "Enlaces rápidos",
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
+    "signUp": "Registrarse",
+    "contact": "Contáctanos",
+    "emailPlaceholder": "Tu correo electrónico",
+    "messagePlaceholder": "Tu mensaje",
+    "submit": "Enviar",
+    "copyright": "© 2024 VoteSmart. Todos los derechos reservados."
+  }
+}
