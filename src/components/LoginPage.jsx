@@ -19,7 +19,7 @@ function LoginPage({ onLogin }) {
 
         try {
             const response = await axios.post(
-                `${API_URL}/api/users/login?username=${username}&password=${password}`
+                `${API_URL}api/users/login?username=${username}&password=${password}`
             );
             const userData = response.data;
             console.log("User data from backend:", userData);
