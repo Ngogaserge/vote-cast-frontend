@@ -16,6 +16,8 @@ function RegisterPage() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -28,7 +30,7 @@ function RegisterPage() {
         setSuccessMessage("");
 
         try {
-            const response = await axios.post("http://localhost:8080/api/users/register", formData);
+            const response = await axios.post(`${API_URL}/api/users/register`, formData);
             setSuccessMessage("Your registration was successful. You can now log in.");
             setFormData({
                 firstName: "",
