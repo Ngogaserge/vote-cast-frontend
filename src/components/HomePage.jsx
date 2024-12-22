@@ -71,7 +71,7 @@ const HomePage = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="http://localhost:8080/images/icons8-vote-100.png"
+                        src="https://vote-cast-backend-production-b22a.up.railway.app/images/icons8-vote-100.png"
                         alt="VoteCast Logo"
                         style={{height: "40px", marginRight: "10px"}}
                     />
