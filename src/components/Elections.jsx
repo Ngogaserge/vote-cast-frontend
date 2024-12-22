@@ -10,6 +10,7 @@ const ElectionManagement = () => {
     const [showModal, setShowModal] = useState(false);
     const [modalType, setModalType] = useState(""); // 'create' or 'edit'
     const navigate = useNavigate();
+    const API_URL = process.env.REACT_APP_API_URL;
     const [currentElection, setCurrentElection] = useState({
         electionId: "",
         electionName: "",
@@ -30,7 +31,7 @@ const ElectionManagement = () => {
 
     const fetchElections = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/elections");
+            const response = await axios.get(`${API_URL}/api/elections`);
             if (Array.isArray(response.data)) {
                 setElections(response.data);
             } else {
@@ -71,10 +72,10 @@ const ElectionManagement = () => {
     const saveElection = async () => {
         try {
             if (modalType === "create") {
-                await axios.post("http://localhost:8080/api/elections", currentElection);
+                await axios.post(`${API_URL}/api/elections`, currentElection);
             } else if (modalType === "edit") {
                 await axios.put(
-                    `http://localhost:8080/api/elections/${currentElection.electionId}`,
+                    `${API_URL}/api/elections/${currentElection.electionId}`,
                     currentElection
                 );
             }
@@ -87,7 +88,7 @@ const ElectionManagement = () => {
 
     const deleteElection = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/elections/${id}`);
+            await axios.delete(`${API_URL}/api/elections/${id}`);
             fetchElections();
         } catch (error) {
             console.error("Error deleting election:", error);
@@ -112,11 +113,13 @@ const ElectionManagement = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="http://localhost:8080/images/icons8-vote-100.png"
+                        src={`${API_URL}/images/icons8-vote-100.png`}
                         alt="VoteCast Logo"
-                        style={{ height: "40px", marginRight: "10px" }}
+                        style={{height: "40px", marginRight: "10px"}}
                     />
-                    <a className="navbar-brand fw-bold" href="http://localhost:3000/admin">VoteCast Admin</a>
+
+                    <a className="navbar-brand fw-bold" href={`${API_URL}/admin`}>VoteCast Admin</a>
+
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -131,7 +134,7 @@ const ElectionManagement = () => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="http://localhost:3000/admin"
+                                <a className="nav-link text-white fw-semibold" href={`${API_URL}/admin`}
                                    style={{ cursor: "pointer" }}>Users Management</a>
                             </li>
                             <li className="nav-item">
@@ -216,7 +219,7 @@ const ElectionManagement = () => {
                         <Card key={election.electionId} className="election-card">
                             <Card.Img
                                 variant="top"
-                                src={`http://localhost:8080/images/${election.image || "placeholder.png"}`}
+                                src={`${API_URL}/images/${election.image || "placeholder.png"}`}
                                 alt={election.electionName}
                                 onError={(e) => (e.target.src = "http://via.placeholder.com/150")}
                             />

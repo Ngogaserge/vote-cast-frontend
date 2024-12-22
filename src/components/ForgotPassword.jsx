@@ -5,7 +5,7 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState(null); // For success/error messages
     const [isSending, setIsSending] = useState(false); // Track sending state
-
+    const API_URL = process.env.REACT_APP_API_URL;
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,7 +13,7 @@ const ForgotPassword = () => {
 
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/auth/forgot-password?email=${email}`
+                `${API_URL}/api/auth/forgot-password?email=${email}`
             );
             setMessage({ type: "success", text: response.data }); // Successful response
         } catch (error) {

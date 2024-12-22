@@ -9,6 +9,7 @@ const ResetPassword = () => {
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
@@ -22,7 +23,7 @@ const ResetPassword = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:8080/api/auth/reset-password?token=${token}&newPassword=${newPassword}&confirmNewPassword=${confirmNewPassword}`, {
+            const response = await axios.post(`${API_URL}/api/auth/reset-password?token=${token}&newPassword=${newPassword}&confirmNewPassword=${confirmNewPassword}`, {
                 token, // Include token in the request
                 newPassword,
                 confirmNewPassword,
