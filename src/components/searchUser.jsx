@@ -7,12 +7,13 @@ function SearchUser() {
     const [searchResults, setSearchResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
     const [hasSearched, setHasSearched] = useState(false);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleSearch = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await axios.get("http://localhost:8080/api/admin/users/search", {
+            const response = await axios.get(`${API_URL}/api/admin/users/search`, {
                 params: { username, email },
             });
 

@@ -9,6 +9,7 @@ const VotesManagement = () => {
     const [votes, setVotes] = useState([]);
     const [candidates, setCandidates] = useState([]);
     const [loading, setLoading] = useState(true);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         console.log("Elections:", elections);
@@ -19,7 +20,7 @@ const VotesManagement = () => {
 
     const fetchElections = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/elections");
+            const response = await axios.get(`${API_URL}/api/elections`);
             setElections(response.data);
         } catch (error) {
             console.error("Error fetching elections:", error);
@@ -28,7 +29,7 @@ const VotesManagement = () => {
 
     const fetchVotes = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/votes");
+            const response = await axios.get(`${API_URL}/api/votes`);
             setVotes(response.data);
         } catch (error) {
             console.error("Error fetching votes:", error);
@@ -37,7 +38,7 @@ const VotesManagement = () => {
 
     const fetchCandidates = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/candidates");
+            const response = await axios.get(`${API_URL}/api/candidates`);
             setCandidates(response.data);
         } catch (error) {
             console.error("Error fetching candidates:", error);
@@ -49,7 +50,7 @@ const VotesManagement = () => {
     const announceWinner = async (electionId, email) => {
         console.log(`Announcing winner for Election ID: ${electionId}`);
         try {
-            const response = await axios.post(`http://localhost:8080/api/elections/${electionId}/announce-winner`, null, {
+            const response = await axios.post(`${API_URL}/api/elections/${electionId}/announce-winner`, null, {
                 params: { email }
             });
             alert(response.data);
@@ -91,11 +92,13 @@ const VotesManagement = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="http://localhost:8080/images/icons8-vote-100.png"
+                        src="https://vote-cast-backend-production-b22a.up.railway.app/images/icons8-vote-100.png"
                         alt="VoteCast Logo"
-                        style={{ height: "40px", marginRight: "10px" }}
+                        style={{height: "40px", marginRight: "10px"}}
                     />
-                    <a className="navbar-brand fw-bold" href="http://localhost:3000/admin">VoteCast Admin</a>
+
+                    <a className="navbar-brand fw-bold" href={`${API_URL}/admin`}>VoteCast Admin</a>
+
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -110,7 +113,7 @@ const VotesManagement = () => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="http://localhost:3000/admin"
+                                <a className="nav-link text-white fw-semibold" href={`${API_URL}/admin`}
                                    style={{cursor: "pointer"}}>Users Management</a>
                             </li>
                             <li className="nav-item">
@@ -173,6 +176,8 @@ const VotesManagement = () => {
 };
 
 export default VotesManagement;
+
+
 
 
 // import React, { useState, useEffect } from "react";

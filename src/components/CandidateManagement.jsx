@@ -11,6 +11,7 @@ function CandidateManagement() {
     const [selectedParty, setSelectedParty] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [currentCandidate, setCurrentCandidate] = useState(null);
+    const API_URL = process.env.REACT_APP_API_URL;
     const [formData, setFormData] = useState({
         fullName: "",
         party: "",
@@ -27,7 +28,7 @@ function CandidateManagement() {
 
     const fetchCandidates = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/candidates");
+            const response = await axios.get(`${API_URL}/api/candidates`);
             setCandidates(response.data);
         } catch (error) {
             console.error("Error fetching candidates:", error);
@@ -36,7 +37,7 @@ function CandidateManagement() {
 
     const fetchElections = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/elections");
+            const response = await axios.get(`${API_URL}/api/elections`);
             if (Array.isArray(response.data)) {
                 setElections(response.data);
             } else {
@@ -64,12 +65,12 @@ function CandidateManagement() {
 
             if (currentCandidate) {
                 await axios.put(
-                    `http://localhost:8080/api/candidates/${currentCandidate.candidateId}`,
+                    `${API_URL}/api/candidates/${currentCandidate.candidateId}`,
                     payload
                 );
             } else {
                 await axios.post(
-                    `http://localhost:8080/api/candidates/election/${formData.electionId}`,
+                    `${API_URL}/api/candidates/election/${formData.electionId}`,
                     payload
                 );
             }
@@ -83,7 +84,7 @@ function CandidateManagement() {
 
     const handleDelete = async (candidateId) => {
         try {
-            await axios.delete(`http://localhost:8080/api/candidates/${candidateId}`);
+            await axios.delete(`${API_URL}/api/candidates/${candidateId}`);
             fetchCandidates();
         } catch (error) {
             console.error("Error deleting candidate:", error);
@@ -124,11 +125,11 @@ function CandidateManagement() {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="http://localhost:8080/images/icons8-vote-100.png"
+                        src={`${API_URL}/images/icons8-vote-100.png`}
                         alt="VoteCast Logo"
-                        style={{ height: "40px", marginRight: "10px" }}
+                        style={{height: "40px", marginRight: "10px"}}
                     />
-                    <a className="navbar-brand fw-bold" href="http://localhost:3000/admin">
+                    <a className="navbar-brand fw-bold" href={`${API_URL}/admin`}>
                         VoteCast Admin
                     </a>
                     <button
@@ -145,7 +146,7 @@ function CandidateManagement() {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="http://localhost:3000/admin"
+                                <a className="nav-link text-white fw-semibold" href={`${API_URL}/admin`}
                                    style={{cursor: "pointer"}}>Users Management</a>
                             </li>
                             <li className="nav-item">
