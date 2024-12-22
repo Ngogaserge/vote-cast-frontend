@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "./HomePage.css";
-
+const API_URL = process.env.REACT_APP_API_URL;
 const HomePage = () => {
     const features = [
         {
@@ -71,10 +71,11 @@ const HomePage = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="https://vote-cast-backend-production-b22a.up.railway.app/images/icons8-vote-100.png"
+                        src={`${API_URL}/images/icons8-vote-100.png`}
                         alt="VoteCast Logo"
                         style={{height: "40px", marginRight: "10px"}}
                     />
+
                     <a className="navbar-brand fw-bold" href="#">VoteCast</a>
                     <button
                         className="navbar-toggler"
