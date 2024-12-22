@@ -14,6 +14,7 @@ function AddUserPage() {
 
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,7 +25,7 @@ function AddUserPage() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8080/api/admin/users', formData);
+            const response = await axios.post(`${API_URL}/api/admin/users`, formData);
             console.log('User added successfully:', response.data);
             setSuccessMessage('User added successfully!');
             setErrorMessage('');

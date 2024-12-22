@@ -15,6 +15,7 @@ function AdminDashboard() {
     const [newUser, setNewUser] = useState({ username: "", email: "", role: "" });
     const chartRef = useRef(null);
     const pageSize = 10;
+    const API_URL = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,7 +25,7 @@ function AdminDashboard() {
 
     const fetchUsers = async (pageNo, query) => {
         try {
-            const response = await axios.get("http://localhost:8080/api/admin/users", {
+            const response = await axios.get(`${API_URL}/api/admin/user-role-stats`, {
                 params: {
                     pageNo: pageNo,
                     pageSize: pageSize,
@@ -41,7 +42,7 @@ function AdminDashboard() {
 
     const fetchRoleStats = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/admin/user-role-stats");
+            const response = await axios.get(`${API_URL}/api/admin/user-role-stats`);
             setStats(response.data);
             renderChart(response.data);
         } catch (error) {
@@ -85,7 +86,7 @@ function AdminDashboard() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/admin/users/${id}`);
+            await axios.delete(`${API_URL}/api/admin/users/${id}`);
             fetchUsers(currentPage, searchQuery);
         } catch (error) {
             console.error("Error deleting user:", error);
@@ -94,7 +95,7 @@ function AdminDashboard() {
 
     const handleAddUser = async () => {
         try {
-            await axios.post("http://localhost:8080/api/admin/users", newUser);
+            await axios.post(`${API_URL}/api/admin/users`, newUser);
             fetchUsers(currentPage, searchQuery);
             setNewUser({ username: "", email: "", role: "" }); // Reset form after submission
         } catch (error) {
@@ -117,10 +118,11 @@ function AdminDashboard() {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="http://localhost:8080/images/icons8-vote-100.png"
+                        src="https://vote-cast-backend-production-b22a.up.railway.app/images/icons8-vote-100.png"
                         alt="VoteCast Logo"
-                        style={{ height: "40px", marginRight: "10px" }}
+                        style={{height: "40px", marginRight: "10px"}}
                     />
+
                     <a className="navbar-brand fw-bold" href="#">VoteCast Admin</a>
                     <button
                         className="navbar-toggler"
@@ -136,7 +138,7 @@ function AdminDashboard() {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="http://localhost:3000/admin"
+                                <a className="nav-link text-white fw-semibold" href={`${API_URL}/admin`}
                                    style={{cursor: "pointer"}}>Users Management</a>
                             </li>
                             <li className="nav-item">
