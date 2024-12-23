@@ -156,7 +156,7 @@ const VotesManagement = () => {
                                         <h3>{election.electionName}</h3>
                                         <button
                                             className="btn btn-success"
-                                            onClick={() => announceWinner(election.electionId, "admin@example.com")}
+                                            onClick={() => announceWinner(election.electionId, "sergengoga05@gmail.com")}
                                         >
                                             Announce Winner
                                         </button>
