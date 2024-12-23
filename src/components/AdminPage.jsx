@@ -303,7 +303,7 @@ function AdminDashboard() {
         try {
             setIsLoading(true);
             setError(null);
-            const response = await axios.get(`${API_URL}/api/admin/user-role-stats`, {
+            const response = await axios.get(`${API_URL}/api/admin/users`, {
                 params: {
                     pageNo: pageNo,
                     pageSize: pageSize,
@@ -323,6 +323,7 @@ function AdminDashboard() {
 
     const fetchRoleStats = async () => {
         try {
+            // This is the correct endpoint for role statistics
             const response = await axios.get(`${API_URL}/api/admin/user-role-stats`);
             if (response.data) {
                 setStats(response.data);
