@@ -29,6 +29,7 @@ const VotesManagement = () => {
     const fetchVotes = async () => {
         try {
             const response = await axios.get(`${API_URL}/api/votes`);
+            console.log("Fetched votes:", response.data); // Debug log
             setVotes(response.data);
         } catch (error) {
             console.error("Error fetching votes:", error);
@@ -76,34 +77,34 @@ const VotesManagement = () => {
     };
 
     const calculateResults = (electionId) => {
-        // First, get all votes for this election
-        const electionVotes = votes.filter(vote =>
-            vote.election?.electionId === electionId
+        const electionVotes = votes.filter(
+            (vote) => vote.candidate?.election?.electionId === electionId
         );
 
-        console.log(`Votes for election ${electionId}:`, electionVotes);
+        console.log(`Votes for election ${electionId}:`, electionVotes); // Debug log
+
+        const totalVotes = electionVotes.length;
+        console.log(`Total votes for election ${electionId}:`, totalVotes); // Debug log
 
         const results = candidates
-            .filter(candidate => candidate.election?.electionId === electionId)
-            .map(candidate => {
-                // Count votes for this candidate
-                const candidateVotes = votes.filter(vote =>
-                    vote.candidate?.candidateId === candidate.candidateId
+            .filter((candidate) => candidate.election?.electionId === electionId)
+            .map((candidate) => {
+                const candidateVotes = electionVotes.filter(
+                    (vote) => vote.candidate.candidateId === candidate.candidateId
                 ).length;
 
-                console.log(`Votes for candidate ${candidate.fullName}:`, candidateVotes);
+                console.log(`Votes for candidate ${candidate.fullName}:`, candidateVotes); // Debug log
 
-                const percentage = electionVotes.length > 0
-                    ? ((candidateVotes / electionVotes.length) * 100).toFixed(2)
-                    : 0;
+                const percentage = totalVotes ? ((candidateVotes / totalVotes) * 100).toFixed(2) : 0;
 
                 return {
                     candidate,
                     votes: candidateVotes,
-                    percentage
+                    percentage,
                 };
             });
 
+        console.log(`Final results for election ${electionId}:`, results); // Debug log
         return results;
     };
 
