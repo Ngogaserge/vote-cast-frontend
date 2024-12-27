@@ -27,7 +27,7 @@ function LoginPage({ onLogin }) {
             onLogin(userData);
             sessionStorage.setItem('user', JSON.stringify(userData));
             const user1 = JSON.parse(sessionStorage.getItem('user'));
-            alert(user1.userId);
+
             console.log('User logged in:', userData);
 
             if (userData.role === "ROLE_USER") {
