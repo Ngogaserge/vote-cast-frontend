@@ -84,9 +84,21 @@ function VoterPage() {
                 userId: user.userId,
             };
 
-            await axios.post(`\`${API_URL}/api/votes`, payload, {
+            // await axios.post(`${API_URL}/api/votes`, payload, {
+            //     headers: { "Content-Type": "application/json" },
+            // });
+            console.log('Vote payload:', payload);
+            console.log('API URL:', `${API_URL}/api/votes`);
+
+            const response = await axios.post(`${API_URL}/api/votes`, payload, {
                 headers: { "Content-Type": "application/json" },
             });
+            if (response.status === 200 || response.status === 201) {
+                saveVotingState(candidate.candidateId, candidate.election.electionId);
+                setShowModal(false);
+            }
+
+            console.log('Vote response:', response);
             saveVotingState(candidate.candidateId, candidate.election.electionId);
             setShowModal(false);
         } catch (error) {
