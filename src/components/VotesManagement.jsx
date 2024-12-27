@@ -191,6 +191,7 @@ const VotesManagement = () => {
     const [votes, setVotes] = useState([]);
     const [candidates, setCandidates] = useState([]);
     const [loading, setLoading] = useState(true);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         fetchElections();
@@ -200,7 +201,7 @@ const VotesManagement = () => {
 
     const fetchElections = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/elections");
+            const response = await axios.get(`${API_URL}/api/elections`);
             setElections(response.data);
         } catch (error) {
             console.error("Error fetching elections:", error);
@@ -209,7 +210,7 @@ const VotesManagement = () => {
 
     const fetchVotes = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/votes");
+            const response = await axios.get(`${API_URL}/api/votes`);
             setVotes(response.data);
         } catch (error) {
             console.error("Error fetching votes:", error);
@@ -218,7 +219,7 @@ const VotesManagement = () => {
 
     const fetchCandidates = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/candidates");
+            const response = await axios.get(`${API_URL}/api/candidates`);
             setCandidates(response.data);
         } catch (error) {
             console.error("Error fetching candidates:", error);
@@ -259,11 +260,13 @@ const VotesManagement = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
                 <div className="container">
                     <img
-                        src="http://localhost:8080/images/icons8-vote-100.png"
+                        src={`${API_URL}/images/icons8-vote-100.png`}
                         alt="VoteCast Logo"
-                        style={{ height: "40px", marginRight: "10px" }}
+                        style={{height: "40px", marginRight: "10px"}}
                     />
-                    <a className="navbar-brand fw-bold" href="http://localhost:3000/admin">VoteCast Admin</a>
+                    <a className="navbar-brand fw-bold" href={`${API_URL}/admin`}>
+                        VoteCast Admin
+                    </a>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -278,7 +281,7 @@ const VotesManagement = () => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="http://localhost:3000/admin"
+                                <a className="nav-link text-white fw-semibold" href={`${API_URL}/admin`}
                                    style={{cursor: "pointer"}}>Users Management</a>
                             </li>
                             <li className="nav-item">
@@ -286,13 +289,16 @@ const VotesManagement = () => {
                                    style={{cursor: "pointer"}}>Election Management</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="/admin/candidate-management" style={{ cursor: "pointer" }}>Candidates Management</a>
+                                <a className="nav-link text-white fw-semibold" href="/admin/candidate-management"
+                                   style={{cursor: "pointer"}}>Candidates Management</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="/admin/vote-management" style={{ cursor: "pointer" }}>Votes Management</a>
+                                <a className="nav-link text-white fw-semibold" href="/admin/vote-management"
+                                   style={{cursor: "pointer"}}>Votes Management</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-semibold" href="/login" style={{ cursor: "pointer" }}>Logout</a>
+                                <a className="nav-link text-white fw-semibold" href="/login"
+                                   style={{cursor: "pointer"}}>Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -301,7 +307,7 @@ const VotesManagement = () => {
 
             {/* Hero Section */}
             <header className="hero text-white text-center py-5">
-                <div className="container">
+            <div className="container">
                     <h1>Vote Management</h1>
                     <p className="lead">View results and statistics for each election.</p>
                 </div>
