@@ -29,7 +29,6 @@ const VotesManagement = () => {
     const fetchVotes = async () => {
         try {
             const response = await axios.get(`${API_URL}/api/votes`);
-            console.log("Fetched votes:", response.data); // Debug log
             setVotes(response.data);
         } catch (error) {
             console.error("Error fetching votes:", error);
@@ -49,18 +48,33 @@ const VotesManagement = () => {
 
     const announceWinner = async (electionId, email) => {
         console.log(`Announcing winner for Election ID: ${electionId}`);
+
+        // Get the results for this election
+        const results = calculateResults(electionId);
+
+        // Find the winner (candidate with most votes)
+        const winner = results.reduce((prev, current) => {
+            return (prev.votes > current.votes) ? prev : current;
+        });
+
+        console.log('Winner data:', winner); // Debug log
+        console.log('All results:', results); // Debug log
+
         try {
-            const response = await axios.post(`${API_URL}/api/elections/${electionId}/announce-winner`, null, {
+            const response = await axios.post(`${API_URL}/api/elections/${electionId}/announce-winner`, {
+                winnerId: winner.candidate.candidateId,
+                votes: winner.votes,
+                percentage: winner.percentage
+            }, {
                 params: { email }
             });
-            // Log the response data
-            console.log('Announce winner response:', response.data);
             alert(response.data);
         } catch (error) {
-            console.error("Error details:", error.response?.data);
-            alert("Error announcing winner: " + error.message);
+            console.error("There was an error announcing the winner!", error);
+            console.error("Error details:", error.response?.data); // More detailed error logging
         }
     };
+
     const calculateResults = (electionId) => {
         // First, get all votes for this election
         const electionVotes = votes.filter(vote =>
