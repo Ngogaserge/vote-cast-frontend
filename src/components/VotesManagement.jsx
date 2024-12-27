@@ -48,13 +48,30 @@ const VotesManagement = () => {
 
     const announceWinner = async (electionId, email) => {
         console.log(`Announcing winner for Election ID: ${electionId}`);
+
+        // Get the results for this election
+        const results = calculateResults(electionId);
+
+        // Find the winner (candidate with most votes)
+        const winner = results.reduce((prev, current) => {
+            return (prev.votes > current.votes) ? prev : current;
+        });
+
+        console.log('Winner data:', winner); // Debug log
+        console.log('All results:', results); // Debug log
+
         try {
-            const response = await axios.post(`${API_URL}/api/elections/${electionId}/announce-winner`, null, {
+            const response = await axios.post(`${API_URL}/api/elections/${electionId}/announce-winner`, {
+                winnerId: winner.candidate.candidateId,
+                votes: winner.votes,
+                percentage: winner.percentage
+            }, {
                 params: { email }
             });
             alert(response.data);
         } catch (error) {
             console.error("There was an error announcing the winner!", error);
+            console.error("Error details:", error.response?.data); // More detailed error logging
         }
     };
 
@@ -63,14 +80,19 @@ const VotesManagement = () => {
             (vote) => vote.candidate?.election?.electionId === electionId
         );
 
-        const totalVotes = electionVotes.length;
+        console.log(`Votes for election ${electionId}:`, electionVotes); // Debug log
 
-        return candidates
+        const totalVotes = electionVotes.length;
+        console.log(`Total votes for election ${electionId}:`, totalVotes); // Debug log
+
+        const results = candidates
             .filter((candidate) => candidate.election?.electionId === electionId)
             .map((candidate) => {
                 const candidateVotes = electionVotes.filter(
                     (vote) => vote.candidate.candidateId === candidate.candidateId
                 ).length;
+
+                console.log(`Votes for candidate ${candidate.fullName}:`, candidateVotes); // Debug log
 
                 const percentage = totalVotes ? ((candidateVotes / totalVotes) * 100).toFixed(2) : 0;
 
@@ -80,6 +102,9 @@ const VotesManagement = () => {
                     percentage,
                 };
             });
+
+        console.log(`Final results for election ${electionId}:`, results); // Debug log
+        return results;
     };
 
     if (loading) return <div>Loading...</div>;
