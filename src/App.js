@@ -11,6 +11,8 @@ import SearchUser from './components/searchUser';
 import UploadUser from './components/Upload';
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 // Multi-language support imports
 import './i18n';
